@@ -1,15 +1,15 @@
 # - Setup Environment -
 
 # OCI-Env-Var Information: https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/clienvironmentvariables.htm
-# Location of your OCI-Env-Vars: https://console.<region>.oraclecloud.com/identity/domains/<tenancy>/users/<user>/api-keys => Add API key (download keys and copy information)
+# Location of your OCI-Env-Vars: https://console.<region>.oraclecloud.com/identity/domains/<domain>/users/<user>/api-keys?tenant=<tenancy>&domain=Default, https://console.<region>.oraclecloud.com/identity/domains/<tenancy>/users/<user>/api-keys => Add API key (download keys and copy information)
 # Private key is OCI_CLI_KEY_CONTENT
 # Public key fingerprint is OCI_CLI_FINGERPRINT
 # Tenancy is OCI_CLI_TENANCY (root/primary is at https://console.eu-frankfurt-1.oraclecloud.com/tenancy)
-# User is OCI_CLI_USER
+# User is OCI_CLI_USER (https://console.<region>.oraclecloud.com/identity/domains/<domain>/users/<user>?tenant=<tenancy>&domainocid1.domain=<domain>)
 # Region is OCI_CLI_REGION
 
-# Compartment is OCI_COMPARTMENT_OCID (https://console.eu-frankfurt-1.oraclecloud.com/identity/compartments)
-# Auth Token is OCI_AUTH_TOKEN (https://console.<region>.oraclecloud.com/identity/domains/<tenancy>/users/<user>/auth-tokens => Generate token)
+# Compartment is OCI_COMPARTMENT_OCID (https://console.eu-frankfurt-1.oraclecloud.com/identity/compartments, https://console.<region>.oraclecloud.com/devops-project/projects/ocid1.devopsproject.oc1.<region>.<id>)
+# Auth Token is OCI_AUTH_TOKEN (https://console.<region>.oraclecloud.com/identity/domains/<domain>/users/<user>/api-keys?tenant=<tenancy>&domain=Default, https://console.<region>.oraclecloud.com/identity/domains/<tenancy>/users/<user>/auth-tokens => Generate token)
 
 # Docker-Hub-Registry-Env-Vars: https://hub.docker.com/settings/security
 # Username/Email is DOCKERHUB_USERNAME
@@ -74,7 +74,7 @@ jobs:
         uses: oracle-actions/get-ocir-repository@v1.2.1
         id: get-ocir-repository
         with:
-          name: repository
+          name: creative-mind # choose one from https://console.<region>.oraclecloud.com/devops-coderepository/projects/<project>/repositories
           compartment: ${{ secrets.OCI_COMPARTMENT_OCID }}
 
       - name: Log into OCIR
